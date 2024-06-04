@@ -39,7 +39,7 @@ class FilamentChangeByMesh(Script):
                 "color1_meshes":
                 {
                     "label": "Color 1 Meshes",
-                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma.",
+                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma. Enter only file name without extension.",
                     "unit": "",
                     "type": "str",
                     "default_value": ""
@@ -47,7 +47,7 @@ class FilamentChangeByMesh(Script):
                 "color2_meshes":
                 {
                     "label": "Color 2 Meshes",
-                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma.",
+                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma. Enter only file name without extension.",
                     "unit": "",
                     "type": "str",
                     "default_value": ""
@@ -55,7 +55,7 @@ class FilamentChangeByMesh(Script):
                 "color3_meshes":
                 {
                     "label": "Color 3 Meshes",
-                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma.",
+                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma. Enter only file name without extension.",
                     "unit": "",
                     "type": "str",
                     "default_value": ""
@@ -63,7 +63,7 @@ class FilamentChangeByMesh(Script):
                 "color4_meshes":
                 {
                     "label": "Color 4 Meshes",
-                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma.",
+                    "description": "At what mesh should color change occur. This will be before each color change occurs. Specify multiple meshes of this color with a comma. Enter only file name without extension.",
                     "unit": "",
                     "type": "str",
                     "default_value": ""
@@ -227,12 +227,13 @@ class FilamentChangeByMesh(Script):
                 lines = layer.split("\n")
                 for line in lines:
                     if line.startswith(";MESH:") and not line.startswith(";MESH:NONMESH"):
-                        mesh_to_find = line[6:]
+                        file_name = line[6:]
+                        file_name_parts = file_name.rsplit(".",1)
+                        mesh_to_find = file_name_parts[0]
                         mesh_color_found = 0.
                         for color_meshes in all_meshes:
                             if mesh_to_find in color_meshes:
                                 mesh_color_found = all_meshes.index(color_meshes) + 1
-#                        Logger.log("d", "FilamentChangeByMeshLOG: actual:" + str(actual_color) + ", looking for:" + str(mesh_to_find) + ", mesh_color_found:" + str(mesh_color_found))
                         if mesh_color_found > 0. and not actual_color == mesh_color_found:
                             if actual_color > 0.:
                                 line_index = lines.index(line)
