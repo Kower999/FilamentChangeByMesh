@@ -15,11 +15,10 @@ After you copied the script don't forget to restart Cura.
 
 3. Add script by button and find it by name "Filament Change By Mesh".
 
-4. Enable plugin and set your color->mesh pairs corresponding to your needs. You can set more than one mesh to same color. Just separate mesh names by comma ","
+4. Enable plugin and set your color->mesh pairs corresponding to your needs. You can set more than one mesh to same color. Just separate mesh names(stl file names) by comma ","
 
 5. Enjoy multicolored prints with single extruder printers ;)
 
 Notes:
 - by mesh i mean separate stl files (objets/models)
 
-- basic requirement for this script to work is to set cura to print meshes/objects separately by setting it in "Special Modes/Print Sequence" and set it to "One at a time"
